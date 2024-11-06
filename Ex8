@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int HighestNum(char* str){
+    int max = -10;
+    int size = strlen(str);
+    
+    for(int i = 0; i < size; i++){
+        if(str[i] == ' ');
+        else if(str[i] == '-'){
+            i++;
+            if(max < 0 - (str[i] - '0')) max = 0 - (str[i] - '0');
+        }
+        else if(max < (str[i] - '0')) max = str[i] - '0';
+    }
+    return max;
+}
+int LowestNum(char* str){
+    int min = 10;
+    int size = strlen(str);
+    
+    for(int i = 0; i < size; i++){
+        if(str[i] == ' ');
+        else if(str[i] == '-'){
+            i++;
+            if(min > 0 - (str[i] - '0')) min = 0 - (str[i] - '0');
+        }
+        else if(min > (str[i] - '0')) min = str[i] - '0';
+    }
+    return min;
+}
+
+int main() {
+    char *str1 = (char*)malloc((strlen("-1 1 2 3 4 5 6 7 8 9")+1)*sizeof(char));
+    strcpy(str1, "-1 1 2 3 4 5 6 7 8 9");
+    char *str2 = (char*)malloc((strlen("-1 -2 -3 -4 -5 -6 -7 -8 -9")+1)*sizeof(char));
+    strcpy(str2, "-1 -2 -3 -4 -5 -6 -7 -8 -9");
+    
+    printf("1) %d\n2) %d\n", HighestNum(str1), LowestNum(str1));
+    printf("3) %d\n4) %d", HighestNum(str2), LowestNum(str2));
+
+    return 0;
+}
