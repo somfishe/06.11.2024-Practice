@@ -1,0 +1,55 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+char* StringReverse(char* string){
+    char *output = (char*)malloc((strlen(string)+1)*sizeof(char));
+    strcpy(output, string);
+    
+    int spacecount = 0;
+    for(int i = 0; i < strlen(string); i++){
+        if(string[i] == ' ') spacecount++;
+    }
+    
+    //printf("%d ", spacecount);
+    int count1 = 0;
+    int count2 = 0;
+    for(int i = 0; i < spacecount; i++){
+        count1 = 0;
+        //printf("%c ", string[strlen(string) - count1 - count2 - 1]);
+        while(string[strlen(string) - count1 - count2 - 1] != ' '){
+            printf("%d%c ", count2 + count1 + 1, string[strlen(string) - count1 - count2 - 1]);
+            count1++;
+        }
+        
+        count2 += count1;
+        for(int i = 0; i < count1; i++){
+            output[count2 - count1 + i] = string[strlen(string) - count2 + i];
+        }
+        output[count2] = ' ';
+        count2++;
+        printf("\n");
+    }
+    
+    count1 = 0;
+        //printf("%c ", string[strlen(string) - count1 - count2 - 1]);
+        while(string[strlen(string) - count1 - count2 ] != string[0]){
+            printf("%d%c ", count2 + count1 + 1, string[strlen(string) - count1 - count2 - 1]);
+            count1++;
+        }
+    count2 += count1;
+        for(int i = 0; i < count1; i++){
+            output[count2 - count1 + i] = string[strlen(string) - count2 + i];
+        }
+    printf("\n");
+    return output;
+}
+
+int main() {
+    char *string = (char*)malloc(54*sizeof(char));
+    strcpy(string, "The greatest victory is that which requires no battle");
+    char *reversestring = StringReverse(string);
+    printf("%s\n%s", string, reversestring);
+    return 0;
+}
