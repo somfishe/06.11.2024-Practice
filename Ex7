@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    printf("Input number: ");
+    int num;
+    scanf("%d",&num);
+    if((int)sqrt(num)*(int)sqrt(num) != num) printf("false");
+    else printf("true");
+
+    return 0;
+}
