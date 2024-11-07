@@ -34,7 +34,7 @@ char* StringReverse(char* string){
     
     count1 = 0;
         //printf("%c ", string[strlen(string) - count1 - count2 - 1]);
-        while(string[strlen(string) - count1 - count2 ] != string[0]){
+        while(strlen(string) - count1 - count2 != 0){
             printf("%d%c ", count2 + count1 + 1, string[strlen(string) - count1 - count2 - 1]);
             count1++;
         }
