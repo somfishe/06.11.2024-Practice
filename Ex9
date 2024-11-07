@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int factorial(int num){
+    int sum = 1;
+    for(int i = 1; i <= num; i++){
+        sum *= i;
+    }
+    return sum;
+}
+
+char* accum(char* input){
+    for(int i = 0; input[i] != '\0'; i++){
+        if(input[i] < 65 || input[i] > 122 || (input[i] > 90 && input[i] < 97)) {
+            printf("ERROR!");
+            return NULL;
+        }
+    }
+    
+    char* output = (char*)malloc(factorial(strlen(input) + 1) * sizeof(char));
+    int cycles = 0, pos = 0;
+    for(int i = 0; input[i] != '\0'; i++){
+        for(int j = 0; j <= cycles; j++){
+            if(j == 0) output[pos++] = input[i] < 91 ? input[i] : input[i] - 32;
+            else output[pos++] = input[i] > 90 ? input[i] : input[i] + 32;
+        }
+        if(i != strlen(input)-1) output[pos++] = '-';
+        cycles++;
+        printf("Cycle: %d\n",cycles);
+    }
+
+    return output;
+}
+
+int main() {
+    char* str1 = (char*)malloc(128 * sizeof(char));
+    strcpy(str1, "GoLdFiSh");
+    char* str2 = accum(str1);
+    printf("%s\n%s\n%d",str1,str2,'a');
+
+    return 0;
+}
